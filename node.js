@@ -31,4 +31,4 @@ global.gc();
 console.log("memory usage: " + parseInt(process.memoryUsage().heapTotal/1000000));
 console.log('init time: ' + ((new Date()).getUTCSeconds() - start.getUTCSeconds()));
 
-//nodejs --max_old_space_size=4000 --expose-gc index.js
+//nodejs --max_old_space_size=4000 --expose-gc node.js
