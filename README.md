@@ -8,7 +8,9 @@ schema:
 * visited_at — timestamp.
 * mark — int from 0 to 5
 
-Example: {"visits": [{"user": 34, "location": 6, "visited_at": 1330898799, "id": 1, "mark": 4}, ...]}
+Example:<br />
+{"visits": [{"user": 34, "location": 6, "visited_at": 1330898799, "id": 1, "mark": 4}, ...]}<br />
+$row = ["user" => 34, "location" => 6, "visited_at" => 1330898799, "id" => 1, "mark" => 4];
 
 ### Results:
 
@@ -19,7 +21,7 @@ Example: {"visits": [{"user": 34, "location": 6, "visited_at": 1330898799, "id":
 |php|[SplFixedArray](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/SplFixedArray.php)|5696|$visits = new SplFixedArray(11000000);|$visits[$row['id']] = $row;|
 |php|array (index)|3936|$visits = new SplFixedArray(11000000);|$visits[$row['id']] = [$row['user'],...];|
 |redis|[mset](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/redis.php)|3354||MSet(["u{$row['id']}" => $row['user'], "l{$row['id']}" => $row['location'], ...])|
-|php|SplFixedArray|2790|$visits = new SplFixedArray(11000000);|$visits[$row['id']] = new SplFixedArray(4);|
+|php|[SplFixedArray](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/SplFixedArray.php)|2790|$visits = new SplFixedArray(11000000);|$visits[$row['id']] = new SplFixedArray(4);|
 |php|[swoole_table](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/swoole_table.php)|2200|$visits = new swoole_table(11000000);|$visits->set($row['id'], $row);|
 |php|[arrays](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/arrays.php)|2147|$user = $location = ... = [];|$user[$row['id']] = $row['user'];$location[$row['id']] = $row['location'];...|
 |php|my object|1430|$visits = new SplFixedArray(11000000);|$visits[$row['id']] = new MyArrayClass($row['user'], ...);|
