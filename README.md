@@ -12,7 +12,7 @@ Example:<br />
 {"visits": [{"user": 34, "location": 6, "visited_at": 1330898799, "id": 1, "mark": 4}, ...]}<br />
 $row = ["user" => 34, "location" => 6, "visited_at" => 1330898799, "id" => 1, "mark" => 4];
 
-### Results:
+### Results (on php7 x64):
 
 |   |   |memory, Mb|initialize|filling|
 |---|---|---|---|---|
