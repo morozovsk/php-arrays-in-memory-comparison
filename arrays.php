@@ -22,5 +22,3 @@ gc_collect_cycles();
 echo 'init time: ' . (time() - $start) . ', memory: ' . intval(memory_get_usage() / 1000000) . "\n";
 
 sleep(3600);
-
-//memory without indexes: 2147, init time: 17
