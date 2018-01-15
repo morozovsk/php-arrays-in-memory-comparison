@@ -2,8 +2,8 @@
 11kk items in 101 json file 1.5MB each. https://github.com/sat2707/hlcupdocs/tree/master/data/FULL/data
 
 schema:
-* id — unique id посещения: int32 unsigned
-* location — loaction id: int32 unsigned
+* id — unique id: int32 unsigned
+* location — location id: int32 unsigned
 * user — user id: int32 unsigned
 * visited_at — timestamp.
 * mark — int from 0 to 5
