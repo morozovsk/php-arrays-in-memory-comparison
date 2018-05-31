@@ -1,7 +1,5 @@
 <?php
 
-pack('LLLc', 'user');
-
 $key = '/var/www/test/visits/shmop.php';
 
 $shm_key = ftok($key, 'v');
