@@ -36,3 +36,5 @@ $row = ["user" => 34, "location" => 6, "visited_at" => 1330898799, "id" => 1, "m
 |php|[swoole_pack](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/swoole_pack.php)|341|shmop_open($k, "c", 0644, 31*11000000);|swoole_pack(['u' => $row['user'], 'l' => $row['location'], ...])|
 |php|[swoole_pack](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/swoole_pack.php)|209|shmop_open($k, "c", 0644, 19*11000000);|swoole_pack([$row['user'], $row['location'], $row['visited_at'], $row['mark']]);|
 |php|[pack](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/pack.php)|143|shmop_open($k, "c", 0644, 13*11000000);|pack('LLLc', $row['user'], $row['location'], $row['visited_at'], $row['mark']);|
+
+### See also comparison [swoole vs workerman vs roadrunner vs node.js vs fasthttp](https://github.com/morozovsk/webserver-performance-comparison)
