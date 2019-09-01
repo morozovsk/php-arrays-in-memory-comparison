@@ -1,6 +1,7 @@
 <?php
 
-//pecl install swoole
+// https://github.com/swoole/swoole-src
+// pecl install swoole
 
 $key = '/var/www/test/visits/shmop.php';
 

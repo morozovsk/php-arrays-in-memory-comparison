@@ -9,8 +9,8 @@ schema:
 * mark — int from 0 to 5
 
 Example:<br />
-{"visits": [{"user": 34, "location": 6, "visited_at": 1330898799, "id": 1, "mark": 4}, ...]}<br />
-$row = ["user" => 34, "location" => 6, "visited_at" => 1330898799, "id" => 1, "mark" => 4];
+{"visits": \[{"user": 34, "location": 6, "visited_at": 1330898799, "id": 1, "mark": 4}, ...\]}<br />
+$row = \["user" => 34, "location" => 6, "visited_at" => 1330898799, "id" => 1, "mark" => 4\];
 
 ### Results (on php7 x64):
 
@@ -33,8 +33,9 @@ $row = ["user" => 34, "location" => 6, "visited_at" => 1330898799, "id" => 1, "m
 |php|[SplFixedArrays](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/SplFixedArrays.php)|704|$user = new SplFixedArray(11000000);...|$user\[$row\['id'\]\] = $row\['user'\];$location\[$row\['id'\]\] = $row\['location'\];...|
 |sqlite|[insert](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/sqlite.php)|623|create table|insert into|
 |php|[swoole_pack](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/swoole_pack.php)|539|shmop_open($k, "c", 0644, 49*11000000);|swoole_pack(\['user' => $row\['user'\], 'location' => $row\['location'\], ...\])|
+|tarantool|[insert](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/tarantool.php)|530|create_index('primary', ...)|insert($row\['id'\], $row\['user'\], $row\['location'\], ...\]);|
+|mysql|[insert](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/mysql.php)|515|create table|insert into|
 |node.js|[arrays](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/node.js)|514|visits_user = \[\]; visits_location = \[\];...|visits_user\[visitsData.visits\[y\]\['id'\]\] = visitsData.visits\[y\].user;...|
-|tarantool|[insert](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/tarantool.php)|507|create_index('primary', {type = 'tree', parts = {1, 'unsigned'}})|insert($row\['id'\], $row\['user'\], $row\['location'\], ...\]);|
 |php|[swoole_pack](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/swoole_pack.php)|341|shmop_open($k, "c", 0644, 31*11000000);|swoole_pack(\['u' => $row\['user'\], 'l' => $row\['location'\], ...\])|
 |php|[swoole_pack](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/swoole_pack.php)|209|shmop_open($k, "c", 0644, 19*11000000);|swoole_pack(\[$row\['user'\], $row\['location'\], $row\['visited_at'\], $row\['mark'\]\]);|
 |php|[pack](https://github.com/morozovsk/php-arrays-in-memory-comparison/blob/master/pack.php)|143|shmop_open($k, "c", 0644, 13*11000000);|pack('LLLc', $row\['user'\], $row\['location'\], $row\['visited_at'\], $row\['mark'\]);|

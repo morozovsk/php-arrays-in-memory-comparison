@@ -1,11 +1,11 @@
 <?php
 
-// memsql 6.8.8
-// https://en.wikipedia.org/wiki/MemSQL
+// mysql 5.8
 
 $start = time();
 
-$pdo = new PDO("mysql:host=127.0.0.1;dbname=testdb", 'login', 'password');
+$pdo = new PDO("mysql:host=localhost;dbname=testdb", 'login', 'password');
+$pdo->exec('SET GLOBAL tmp_table_size = 1024 * 1024 * 1024 * 2; SET GLOBAL max_heap_table_size = 1024 * 1024 * 1024 * 2;');
 
 $pdo->exec("CREATE TABLE visits (
   id int NOT NULL PRIMARY KEY,
@@ -13,7 +13,7 @@ $pdo->exec("CREATE TABLE visits (
   location int NOT NULL,
   visited_at int NOT NULL,
   mark tinyint NOT NULL
-) ENGINE='MemSQL';");
+) ENGINE='MEMORY';");
 
 $i = 1;
 while ($visitsData = @file_get_contents("data/visits_$i.json")) {
@@ -28,7 +28,10 @@ while ($visitsData = @file_get_contents("data/visits_$i.json")) {
         $sql .= "({$row['id']}, {$row['user']}, {$row['location']}, {$row['visited_at']}, {$row['mark']})";
     }
 
-    $pdo->exec($sql);
+    $r = $pdo->exec($sql);
+    if (!$r) {
+        var_export($pdo->errorInfo());
+    }
 
     echo "$i\n";
     $i++;

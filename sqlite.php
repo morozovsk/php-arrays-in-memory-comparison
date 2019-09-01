@@ -1,5 +1,7 @@
 <?php
 
+// sqlite 3.7.17
+
 $start = time();
 
 $pdo = new PDO("sqlite::memory:");
@@ -18,7 +20,7 @@ $i = 1;
 while ($visitsData = @file_get_contents("data/visits_$i.json")) {
     $visitsData = json_decode($visitsData, true);
     foreach ($visitsData['visits'] as $k => $row) {
-        $sql = "INSERT INTO visits (id, user, location, visited_at, mark) VALUES ({$row['id']}, {$row['user']}, {$row['location']}, {$row['mark']}, {$row['visited_at']})";
+        $sql = "INSERT INTO visits (id, user, location, visited_at, mark) VALUES ({$row['id']}, {$row['user']}, {$row['location']}, {$row['visited_at']}, {$row['mark']})";
         $pdo->exec($sql);
     }
 
